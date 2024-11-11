@@ -10,7 +10,7 @@ list_player = []
 def criar_Player():
     name = input('Digite o nome do player: ')
     level = 1
-    inventario= [[] *4 for _ in range(2)]
+    inventario= [["Vazio"] *8 for _ in range(1)]
     Player ={
         "Nome": name,
         "Level": level,
@@ -128,12 +128,13 @@ def Reiniciar():
     else:
         time.sleep(0.5)
         print("Até mais, guerreiro(a)")
-        breakpoint
+    breakpoint
     
 def Morte_vitoria(y,x):
     if y['Hp'] <= 0:
         time.sleep(0.5)
         print('Você venceu!!!')
+        x['Moedas'] += y['Level'] * 10
         if x['Hp'] + 50 <=300:
             x['Hp'] += 50
         x['Exp'] += 10
@@ -185,7 +186,7 @@ def selecionar_monstro(difi):
 
 def escolher_dificuldade():
     dificuldade = ['Fácil', 'Normal', 'Difícil', 'INSANO!!']
-    #print(f"Escolha uma dificuldade entre: \n {dificuldade[0]} \n {dificuldade[1]} \n {dificuldade[2]} \n {dificuldade[3]}")
+    print(f"Escolha uma dificuldade entre: ")
     for num, dif in enumerate(dificuldade, 1):
         print(num, '>>', dif)
         time.sleep(0.5)
@@ -205,29 +206,30 @@ def escolher_dificuldade():
 for y in list_Monstro:
         print(f"Nome: {y['Nome']} | Level: {y['Level']} | Dano: {y['Dano']} | Hp {y['Hp']}")
    """     
-def bau_tesouro(x): #continuar essa função
+def bau_tesouro(player, difi): #continuar essa função
     itens = random.choice(['Moedas', 'Poção de cura', 'Poção de exp'])
     time.sleep(0.5)
     print('\nVocê encontrou um baú!!!')
     
     if itens == 'Moedas':
         Moedas = random.choice([10, 20, 30, 40, 50, 60])
-        x["Moedas"] += Moedas
+        player["Moedas"] += Moedas
         #time.sleep(0.5)
-        print(f"Você recebeu {x['Moedas']} moedas.")
+        print(f"Você recebeu {player['Moedas']} moedas.")
+        andar(difi, player)
     elif itens == 'Poção de cura':
         hp = 30
-        if x["Hp"] + hp <= 300:
-            x["Hp"] += hp
+        if player["Hp"] + hp <= 300:
+            player["Hp"] += hp
             time.sleep(0.5)
-        print(f"\nSeu Hp: {x['Hp']}")
+        print(f"\nSeu Hp: {player['Hp']}")
     elif itens == 'Poção de exp':
         xp=30
-        x["Exp"] += xp
-        print(f"\nSeu Exp: {x['Exp']}")
-        if x['Exp'] == 100:
-            x['Exp'] = 0           
-            x['Level'] += 1
+        player["Exp"] += xp
+        print(f"\nSeu Exp: {player['Exp']}")
+        if player['Exp'] == 100:
+            player['Exp'] = 0           
+            player['Level'] += 1
 
         
 
@@ -252,7 +254,14 @@ def comerciante(difi, player):
             moedas = 20
             if player['Moedas'] >= moedas:
                 player['Moedas'] -= moedas
-                player['Inventário'].append(itens[0])
+                for i in range(len(player['Inventário'])):
+                    for j in range(len(player['Inventário'][i])):
+                        if player['Inventário'][i][j] == 'Vazio':
+                            player['Inventário'][i][j] = itens[0]
+                            break  # Stop once the first empty slot is filled
+                        else:
+                            continue  # Continue if no "Vazio" was found in the current row
+                        break
                 print(f"Seu inventário: {player['Inventário']}")
                 print(f"Moedas restantes: {player['Moedas']}")
                 andar(difi, player)
@@ -263,7 +272,14 @@ def comerciante(difi, player):
             moedas = 25
             if player['Moedas'] >= moedas:
                 player['Moedas'] -= moedas
-                player['Inventário'].append(itens[1])
+                for i in range(len(player['Inventário'])):
+                    for j in range(len(player['Inventário'][i])):
+                        if player['Inventário'][i][j] == 'Vazio':
+                            player['Inventário'][i][j] = itens[1]
+                            break  # Stop once the first empty slot is filled
+                        else:
+                            continue  # Continue if no "Vazio" was found in the current row
+                        break
                 print(f"Seu inventário: {player['Inventário']}")
                 print(f"Moedas restantes: {player['Moedas']}")
                 andar(difi, player)
@@ -274,7 +290,14 @@ def comerciante(difi, player):
             moedas = 15
             if player['Moedas'] >= moedas:
                 player['Moedas'] -= moedas
-                player['Inventário'].append(itens[2])
+                for i in range(len(player['Inventário'])):
+                    for j in range(len(player['Inventário'][i])):
+                        if player['Inventário'][i][j] == 'Vazio':
+                            player['Inventário'][i][j] = itens[2]
+                            break  # Stop once the first empty slot is filled
+                        else:
+                            continue  # Continue if no "Vazio" was found in the current row
+                        break
                 print(f"Seu inventário: {player['Inventário']}")
                 print(f"Moedas restantes: {player['Moedas']}")
                 andar(difi, player)
@@ -285,7 +308,14 @@ def comerciante(difi, player):
             moedas = 60
             if player['Moedas'] >= moedas:
                 player['Moedas'] -= moedas
-                player['Inventário'].append(itens[3])
+                for i in range(len(player['Inventário'])):
+                    for j in range(len(player['Inventário'][i])):
+                        if player['Inventário'][i][j] == 'Vazio':
+                            player['Inventário'][i][j] = itens[3]
+                            break  # Stop once the first empty slot is filled
+                        else:
+                            continue  # Continue if no "Vazio" was found in the current row
+                        break
                 print(f"Seu inventário: {player['Inventário']}")
                 print(f"Moedas restantes: {player['Moedas']}")
                 andar(difi, player)
@@ -296,7 +326,14 @@ def comerciante(difi, player):
             moedas = 80
             if player['Moedas'] >= moedas:
                 player['Moedas'] -= moedas
-                player['Inventário'].append(itens[4])
+                for i in range(len(player['Inventário'])):
+                    for j in range(len(player['Inventário'][i])):
+                        if player['Inventário'][i][j] == 'Vazio':
+                            player['Inventário'][i][j] = itens[4]
+                            break  # Stop once the first empty slot is filled
+                        else:
+                            continue  # Continue if no "Vazio" was found in the current row
+                        break  # Exi
                 print(f"Seu inventário: {player['Inventário']}")
                 print(f"Moedas restantes: {player['Moedas']}")
                 andar(difi, player)
@@ -315,7 +352,7 @@ def comerciante(difi, player):
 
 
 def direita(difi, player):
-    sort_right = random.choice([lambda: selecionar_monstro(difi), lambda:'Não há nada por aqui... \nProssiga!!', lambda: bau_tesouro(player), lambda: comerciante(difi, player)])
+    sort_right = random.choice([lambda: selecionar_monstro(difi), lambda:'Não há nada por aqui... \nProssiga!!', lambda: bau_tesouro(player, difi), lambda: comerciante(difi, player)])
     res = sort_right()
     if res == 'Não há nada por aqui... \nProssiga!!':
         time.sleep(0.5)
@@ -324,7 +361,7 @@ def direita(difi, player):
     sort_right() #continuar essa função
     
 def esquerda(difi, player):
-    sort_left = random.choice([lambda: selecionar_monstro(difi), lambda: 'Não há nada por aqui... \nProssiga!!', lambda: bau_tesouro(player), lambda: comerciante(difi, player)])
+    sort_left = random.choice([lambda: selecionar_monstro(difi), lambda: 'Não há nada por aqui... \nProssiga!!', lambda: bau_tesouro(player,difi), lambda: comerciante(difi, player)])
     res = sort_left()
     if res == 'Não há nada por aqui... \nProssiga!!':
         time.sleep(0.5)
@@ -334,7 +371,7 @@ def esquerda(difi, player):
      #continuar essa função
 
 def em_frente(difi, player):
-    sort_front = random.choice([lambda: selecionar_monstro(difi), lambda:'Não há nada por aqui... \nProssiga!!', lambda: bau_tesouro(player), lambda: comerciante(difi, player)])
+    sort_front = random.choice([lambda: selecionar_monstro(difi), lambda:'Não há nada por aqui... \nProssiga!!', lambda: bau_tesouro(player, difi), lambda: comerciante(difi, player)])
     res = sort_front()
     if res == 'Não há nada por aqui... \nProssiga!!':
         time.sleep(0.5)
