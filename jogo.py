@@ -10,7 +10,7 @@ list_player = []
 def criar_Player():
     name = input('Digite o nome do player: ')
     level = 1
-    inventario= [[] * 4 for _ in range(2)]
+    inventario= [[] *4 for _ in range(2)]
     Player ={
         "Nome": name,
         "Level": level,
@@ -343,7 +343,12 @@ def em_frente(difi, player):
     sort_front() #continuar essa função
 
 def abrir_inventario(player):
-    print(player['Inventário'])   
+        print(player['Inventário'])
+"""
+   else:
+        print(player['Inventário'])
+        Usar = str(input("Deseja usar/equipar algum item? \n[S]sim \n[N]não: "))"""
+#Continuar daqui
 
 
 def andar(difi, player): #continuar essa função
