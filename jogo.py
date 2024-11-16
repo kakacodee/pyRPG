@@ -164,19 +164,19 @@ def atacar_npc(y, x):
     if atac_sort == 1:
         time.sleep(0.5)
         y['Hp'] -= atac[0]
-        print(f"Você usou o ataque Chute: {atac[0]}")
+        print(f"Você usou o ataque Básico: {atac[0]}")
         x['Stamina'] -= 2
         zerar_stamina(y,x)
     if atac_sort == 2:
         time.sleep(0.5)
         y['Hp'] -= atac[1]
-        print(f"Você usou o ataque Murro: {atac[1]}")
+        print(f"Você usou o ataque Médio: {atac[1]}")
         x['Stamina'] -= 5
         zerar_stamina(y,x)
     if atac_sort == 3:
         time.sleep(0.5)
         y['Hp'] -= atac[2]
-        print(f"Você usou o ataque Golpe Karateca: {atac[2]}")
+        print(f"Você usou o ataque Especial: {atac[2]}")
         x['Stamina'] -= 20
         zerar_stamina(y,x)
     elif  0<atac_sort>3:
@@ -214,8 +214,7 @@ def Reiniciar():
     if reiniciar in ('S', 's'):
         list_player.clear()
         list_Monstro.clear()
-        criar_Player()
-        escolher_dificuldade()
+        jogo()
     else:
         time.sleep(0.5)
         print("Até mais, guerreiro(a)")
@@ -240,7 +239,7 @@ def Morte_vitoria(y,x):
         Reiniciar()
 
 
-def selecionar_monstro(difi):
+def selecionar_monstro(difi, player):
     choices = {1: 9, 2: 19, 3: 29, 4: 99}
     max_choice = choices[difi]
     time.sleep(0.5)
@@ -248,11 +247,17 @@ def selecionar_monstro(difi):
     time.sleep(0.5)
     monstro_choice = int(input(f"Escolha um número de 0 a {max_choice} e o monstro será revelado: "))
     lista_choice = [monstro_choice]
-    if 0 <= monstro_choice < len(list_Monstro):
+    if 0 <= monstro_choice <= len(list_Monstro):
         time.sleep(0.5)
         combate(list_Monstro[monstro_choice], list_player[0])
         list_Monstro.pop(monstro_choice)
         choices[difi] -=1
+        andar(difi, player)
+    else:
+        time.sleep(0.5)
+        print('Selecione um número válido... \n')
+        
+        selecionar_monstro(difi)
         
         #print(list_Monstro.index)
         
@@ -261,11 +266,6 @@ def selecionar_monstro(difi):
         time.sleep(0.5)
         print('Você derrotou todos os monstros!!!!!! LEGENDÁRIO')
         escolher_dificuldade()
-    else:
-        time.sleep(0.5)
-        print('Selecione um número válido... \n')
-        
-        selecionar_monstro(difi)
 
 
 
@@ -437,7 +437,7 @@ def comerciante(difi, player):
 
 
 def direita(difi, player):
-    sort_right = random.choice([lambda: selecionar_monstro(difi), lambda:'Não há nada por aqui... \nProssiga!!', lambda: bau_tesouro(player, difi), lambda: comerciante(difi, player)])
+    sort_right = random.choice([lambda: selecionar_monstro(difi, player), lambda:'Não há nada por aqui... \nProssiga!!', lambda: bau_tesouro(player, difi), lambda: comerciante(difi, player)])
     res = sort_right()
     if res == 'Não há nada por aqui... \nProssiga!!':
         time.sleep(0.5)
@@ -446,7 +446,7 @@ def direita(difi, player):
     sort_right() #continuar essa função
     
 def esquerda(difi, player):
-    sort_left = random.choice([lambda: selecionar_monstro(difi), lambda: 'Não há nada por aqui... \nProssiga!!', lambda: bau_tesouro(player,difi), lambda: comerciante(difi, player)])
+    sort_left = random.choice([lambda: selecionar_monstro(difi, player), lambda: 'Não há nada por aqui... \nProssiga!!', lambda: bau_tesouro(player,difi), lambda: comerciante(difi, player)])
     res = sort_left()
     if res == 'Não há nada por aqui... \nProssiga!!':
         time.sleep(0.5)
@@ -456,7 +456,7 @@ def esquerda(difi, player):
      #continuar essa função
 
 def em_frente(difi, player):
-    sort_front = random.choice([lambda: selecionar_monstro(difi), lambda:'Não há nada por aqui... \nProssiga!!', lambda: bau_tesouro(player, difi), lambda: comerciante(difi, player)])
+    sort_front = random.choice([lambda: selecionar_monstro(difi, player), lambda:'Não há nada por aqui... \nProssiga!!', lambda: bau_tesouro(player, difi), lambda: comerciante(difi, player)])
     res = sort_front()
     if res == 'Não há nada por aqui... \nProssiga!!':
         time.sleep(0.5)
