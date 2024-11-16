@@ -421,7 +421,7 @@ def jogo():
     criar_Player()
     player = list_player[0]
     dific = escolher_dificuldade()
-    print('\nVocê, um guerreiro recém-treinado e ansioso para provar seu valor, foi convocado pelo Conselho dos Anciãos para defender o reino e investigar a origem desse mal.\nArmado com coragem e determinação, você sabe que essa é sua chance de se tornar uma lenda — ou desaparecer nas sombras...\n\nPrepare-se para uma jornada de mistérios e batalhas. O destino de Arvendale está em suas mãos.')
+    print('\nVocê, um guerreiro recém-treinado e ansioso para provar seu valor, foi convocado pelo Conselho dos Anciões para defender o reino e investigar a origem desse mal.\nArmado com coragem e determinação, você sabe que essa é sua chance de se tornar uma lenda — ou desaparecer nas sombras...\n\nPrepare-se para uma jornada de mistérios e batalhas. O destino de Arvendale está em suas mãos.')
     andar(dific, player)
     
 jogo()
