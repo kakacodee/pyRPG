@@ -457,12 +457,10 @@ def em_frente(difi, player):
     sort_front() #continuar essa função
 
 def abrir_inventario(player):
-        print(player['Inventário'])
-"""
-   else:
-        print(player['Inventário'])
-        Usar = str(input("Deseja usar/equipar algum item? \n[S]sim \n[N]não: "))"""
-#Continuar daqui
+    opcoes = ["Equipar", "Usar", "consumir"]
+    for i in range(len(player['Inventário'])):
+        for j in range(len(player['Inventário'][i])):
+            print(f"{i+j+1}ºslot >> {player["Inventário"][i][j]}")
 
 
 def andar(difi, player): #continuar essa função
