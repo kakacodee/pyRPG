@@ -99,11 +99,25 @@ def criar_Player():
         "Hp": 310,
         "Inventário": inventario,
         "Moedas": 0
+    }
     elif 0 <select >5:
         print("Escolha uma classe válida...")
         criar_Player()
-    }
-       
+        """Player ={
+            "Nome": name,
+            "Level": level,
+            "ExpMax": level * 100,
+            "Exp": 0,
+            "Danobase": 25 * level,
+            "Danomedio": 40 * level,
+            "Danoespecial": 60 * level,
+            "Stamina": 100,
+            "StaminaMax": 100,
+            "HpMax": 300,
+            "Hp": 300,
+            "Inventário": inventario,
+            "Moedas": 0
+        }"""
     list_player.append(Player)
     print(f"\nStatus do player: {list_player[0]}")
     time.sleep(0.5)
@@ -205,7 +219,7 @@ def Reiniciar():
     else:
         time.sleep(0.5)
         print("Até mais, guerreiro(a)")
-    breakpoint
+        exit()
     
 def Morte_vitoria(y,x):
     if y['Hp'] <= 0:
@@ -243,16 +257,10 @@ def selecionar_monstro(difi):
         #print(list_Monstro.index)
         
         andar(difi, list_player[0])
-    elif list_Monstro is None:
+    if list_Monstro is None:
         time.sleep(0.5)
         print('Você derrotou todos os monstros!!!!!! LEGENDÁRIO')
         escolher_dificuldade()
-    elif monstro_choice > len(list_Monstro):
-        time.sleep(0.5)
-        print('Esse número já foi utilizado...')
-        time.sleep(0.5)
-        print(f"Números já escolhidos: {lista_choice}")
-        selecionar_monstro(difi)
     else:
         time.sleep(0.5)
         print('Selecione um número válido... \n')
@@ -457,10 +465,20 @@ def em_frente(difi, player):
     sort_front() #continuar essa função
 
 def abrir_inventario(player):
+    #print(player['Inventário'])
     opcoes = ["Equipar", "Usar", "consumir"]
     for i in range(len(player['Inventário'])):
         for j in range(len(player['Inventário'][i])):
             print(f"{i+j+1}ºslot >> {player["Inventário"][i][j]}")
+    """item = int(input("Digite o número do item que você deseja interagir: "))
+    if item == 1:"""
+   
+
+"""
+   else:
+        print(player['Inventário'])
+        Usar = str(input("Deseja usar/equipar algum item? \n[S]sim \n[N]não: "))"""
+#Continuar daqui
 
 
 def andar(difi, player): #continuar essa função
