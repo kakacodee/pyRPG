@@ -11,39 +11,116 @@ def criar_Player():
     name = input('Digite o nome do player: ')
     level = 1
     inventario= [["Vazio"] *8 for _ in range(1)]
-    Player ={
+    classes = ["arqueiro", "cavaleiro", "anão", "mago", "gladiador"]
+    for x, clas in enumerate(classes, 1):
+        print(f"{x} >> {clas}")
+    select = int(input("Digite o número da classe desejada: "))
+    if select == 1:
+        print(f"Você é um ARQUEIRO, {name}")
+        Player ={
         "Nome": name,
         "Level": level,
         "ExpMax": level * 100,
         "Exp": 0,
-        "Danobase": 25 * level,
+        "Danobase": 30 * level,
         "Danomedio": 40 * level,
+        "Danoespecial": 90 * level,
+        "Stamina": 80,
+        "StaminaMax": 80,
+        "HpMax": 280,
+        "Hp": 280,
+        "Inventário": inventario,
+        "Moedas": 0
+    }
+    if select == 2:
+        print(f"Você é um CAVALEIRO, {name}")
+        Player ={
+        "Nome": name,
+        "Level": level,
+        "ExpMax": level * 100,
+        "Exp": 0,
+        "Danobase": 45 * level,
+        "Danomedio": 60 * level,
+        "Danoespecial": 75 * level,
+        "Stamina": 120,
+        "StaminaMax": 120,
+        "HpMax": 320,
+        "Hp": 320,
+        "Inventário": inventario,
+        "Moedas": 0
+    }
+    if select == 3:
+        print(f"Você é um ANÃO, {name}")
+        Player ={
+        "Nome": name,
+        "Level": level,
+        "ExpMax": level * 100,
+        "Exp": 0,
+        "Danobase": 50 * level,
+        "Danomedio": 55 * level,
         "Danoespecial": 60 * level,
-        "Stamina": 100,
-        "StaminaMax": 100,
+        "Stamina": 70,
+        "StaminaMax": 70,
         "HpMax": 300,
         "Hp": 300,
         "Inventário": inventario,
         "Moedas": 0
     }
+    if select == 4:
+        print(f"Você é um MAGO, {name}")
+        Player ={
+        "Nome": name,
+        "Level": level,
+        "ExpMax": level * 100,
+        "Exp": 0,
+        "Danobase": 60 * level,
+        "Danomedio": 70 * level,
+        "Danoespecial": 90 * level,
+        "Stamina": 60,
+        "StaminaMax": 60,
+        "HpMax": 260,
+        "Hp": 260,
+        "Inventário": inventario,
+        "Moedas": 0
+    }
+    if select == 5:
+        print(f"Você é um GLADIADOR, {name}")
+        Player ={
+        "Nome": name,
+        "Level": level,
+        "ExpMax": level * 100,
+        "Exp": 0,
+        "Danobase": 30 * level,
+        "Danomedio": 45 * level,
+        "Danoespecial": 65 * level,
+        "Stamina": 110,
+        "StaminaMax": 110,
+        "HpMax": 310,
+        "Hp": 310,
+        "Inventário": inventario,
+        "Moedas": 0
+    elif 0 <select >5:
+        print("Escolha uma classe válida...")
+        criar_Player()
+    }
+       
     list_player.append(Player)
     print(f"\nStatus do player: {list_player[0]}")
     time.sleep(0.5)
-
-
+    
    
 
 
 
 list_Monstro = []
 def Gerar_Monstros():
-    levelM = randint(1, 50)
+    levelM = randint(1, 100)
     nomeM = random.choice(['Goblin', 'Orc', 'Serpente', 'Duende'])
     Monstro={
         "Nome": f"{nomeM} {levelM}",
         "Level": levelM,
         "Dano": 1 * levelM,
-        "Hp": 3 * levelM
+        "Hp": 4 * levelM
     }
     list_Monstro.append(Monstro)
     """
@@ -68,7 +145,7 @@ def zerar_stamina(y,x):
 def atacar_npc(y, x):
     atac=[x['Danobase'] , x['Danomedio'], x['Danoespecial']]
     print('Lista de ataques: ')
-    print(f"1 >> Chute: {x['Danobase']} \n2 >> Murro: {x['Danomedio']} \n3 >> Golpe karateca: {x['Danoespecial']}")
+    print(f"1 >> Golpe básico: {x['Danobase']} \n2 >> Golpe médio: {x['Danomedio']} \n3 >> Golpe especial: {x['Danoespecial']}")
     atac_sort = int(input('Digite o número do ataque escolhido: '))
     if atac_sort == 1:
         time.sleep(0.5)
@@ -421,7 +498,7 @@ def jogo():
     criar_Player()
     player = list_player[0]
     dific = escolher_dificuldade()
-    print('\nVocê, um guerreiro recém-treinado e ansioso para provar seu valor, foi convocado pelo Conselho dos Anciões para defender o reino e investigar a origem desse mal.\nArmado com coragem e determinação, você sabe que essa é sua chance de se tornar uma lenda — ou desaparecer nas sombras...\n\nPrepare-se para uma jornada de mistérios e batalhas. O destino de Arvendale está em suas mãos.')
+    print('\nVocê, um guerreiro recém-treinado e ansioso para provar seu valor, foi convocado pelo Conselho dos Anciãos para defender o reino e investigar a origem desse mal.\nArmado com coragem e determinação, você sabe que essa é sua chance de se tornar uma lenda — ou desaparecer nas sombras...\n\nPrepare-se para uma jornada de mistérios e batalhas. O destino de Arvendale está em suas mãos.')
     andar(dific, player)
     
 jogo()
