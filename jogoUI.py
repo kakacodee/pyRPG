@@ -1,3 +1,4 @@
+#IGNORE ESSE ARQUIVO POR ENQUANTO
 import pygame
 import sys
 
