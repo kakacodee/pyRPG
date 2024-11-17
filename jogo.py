@@ -247,17 +247,16 @@ def selecionar_monstro(difi, player):
     time.sleep(0.5)
     monstro_choice = int(input(f"Escolha um número de 0 a {max_choice} e o monstro será revelado: "))
     lista_choice = [monstro_choice]
-    if 0 <= monstro_choice <= len(list_Monstro):
+    if 0 <= monstro_choice <= max_choice:
         time.sleep(0.5)
         print(f"Monstro a enfrentar: {list_Monstro[monstro_choice]}")
         combate(list_Monstro[monstro_choice], list_player[0])
         list_Monstro.pop(monstro_choice)
         choices[difi] -=1
         andar(difi, player)
-    else:
+    elif monstro_choice > max_choice:
         time.sleep(0.5)
         print('Selecione um número válido... \n')
-        
         selecionar_monstro(difi, player)
         
         #print(list_Monstro.index)
