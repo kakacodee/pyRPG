@@ -32,7 +32,7 @@ def criar_Player():
         "Inventário": inventario,
         "Moedas": 0
     }
-    if select == 2:
+    elif select == 2:
         print(f"Você é um CAVALEIRO, {name}")
         Player ={
         "Nome": name,
@@ -49,7 +49,7 @@ def criar_Player():
         "Inventário": inventario,
         "Moedas": 0
     }
-    if select == 3:
+    elif select == 3:
         print(f"Você é um ANÃO, {name}")
         Player ={
         "Nome": name,
@@ -66,7 +66,7 @@ def criar_Player():
         "Inventário": inventario,
         "Moedas": 0
     }
-    if select == 4:
+    elif select == 4:
         print(f"Você é um MAGO, {name}")
         Player ={
         "Nome": name,
@@ -83,7 +83,7 @@ def criar_Player():
         "Inventário": inventario,
         "Moedas": 0
     }
-    if select == 5:
+    elif select == 5:
         print(f"Você é um GLADIADOR, {name}")
         Player ={
         "Nome": name,
@@ -100,7 +100,7 @@ def criar_Player():
         "Inventário": inventario,
         "Moedas": 0
     }
-    elif 0 <select >5:
+    if 0 <select >5:
         print("Escolha uma classe válida...")
         criar_Player()
         """Player ={
@@ -240,32 +240,30 @@ def Morte_vitoria(y,x):
 
 
 def selecionar_monstro(difi, player):
-    choices = {1: 9, 2: 19, 3: 29, 4: 99}
+    choices = {1: 11, 2: 23, 3: 35, 4: 47}
     max_choice = choices[difi]
     time.sleep(0.5)
     print('Apareceu um monstro nas sombras...')
     time.sleep(0.5)
     monstro_choice = int(input(f"Escolha um número de 0 a {max_choice} e o monstro será revelado: "))
     lista_choice = [monstro_choice]
-    if 0 <= monstro_choice <= max_choice:
+    if 0 < monstro_choice <= len(list_Monstro):
         time.sleep(0.5)
         print(f"Monstro a enfrentar: {list_Monstro[monstro_choice]}")
         combate(list_Monstro[monstro_choice], list_player[0])
         list_Monstro.pop(monstro_choice)
         choices[difi] -=1
-        andar(difi, player)
-    elif monstro_choice > max_choice:
-        time.sleep(0.5)
-        print('Selecione um número válido... \n')
-        selecionar_monstro(difi, player)
-        
+        if list_Monstro:
+            andar(difi, player)
+        else:
+            print('Você derrotou todos os monstros!!!!!! LEGENDÁRIO')
+            escolher_dificuldade()
         #print(list_Monstro.index)
         
-        andar(difi, list_player[0])
-    if list_Monstro is None:
-        time.sleep(0.5)
-        print('Você derrotou todos os monstros!!!!!! LEGENDÁRIO')
-        escolher_dificuldade()
+    else:
+        print(f"Selecione um número válido entre 0 a {len(list_Monstro) -1}\n")
+        selecionar_monstro(difi, player)
+        
 
 
 
