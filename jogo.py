@@ -11,7 +11,7 @@ def criar_Player():
     name = input('Digite o nome do player: ')
     level = 1
     inventario= [["Vazio"] *8 for _ in range(1)]
-    classes = ["arqueiro", "cavaleiro", "anão", "mago", "gladiador"]
+    classes = ["Arqueiro", "Cavaleiro", "Anão", "Mago", "Gladiador"]
     for x, clas in enumerate(classes, 1):
         print(f"{x} >> {clas}")
     select = int(input("Digite o número da classe desejada: "))
@@ -78,8 +78,8 @@ def criar_Player():
         "Danoespecial": 90 * level,
         "Stamina": 60,
         "StaminaMax": 60,
-        "HpMax": 260,
-        "Hp": 260,
+        "HpMax": 280,
+        "Hp": 280,
         "Inventário": inventario,
         "Moedas": 0
     }
@@ -249,6 +249,7 @@ def selecionar_monstro(difi, player):
     lista_choice = [monstro_choice]
     if 0 <= monstro_choice <= len(list_Monstro):
         time.sleep(0.5)
+        print(f"Monstro a enfrentar: {list_Monstro[monstro_choice]}")
         combate(list_Monstro[monstro_choice], list_player[0])
         list_Monstro.pop(monstro_choice)
         choices[difi] -=1
@@ -257,7 +258,7 @@ def selecionar_monstro(difi, player):
         time.sleep(0.5)
         print('Selecione um número válido... \n')
         
-        selecionar_monstro(difi)
+        selecionar_monstro(difi, player)
         
         #print(list_Monstro.index)
         
@@ -334,6 +335,7 @@ def comerciante(difi, player):
         time.sleep(0.5)
         print(f"Produtos disponíveis: \n1>>{itens[0]} \n2>>{itens[1]} \n3>>{itens[2]} \n4>>{itens[3]} \n5>>{itens[4]}")
         time.sleep(0.5)
+        print(f"Moedas: {player["Moedas"]}")
         produtos = int(input('Digite o número do produto que você deseja comprar: '))
         if produtos == 1:
             moedas = 20
