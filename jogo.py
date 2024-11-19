@@ -297,21 +297,23 @@ def bau_tesouro(player, difi): #continuar essa função
         Moedas = random.choice([10, 20, 30, 40, 50, 60])
         player["Moedas"] += Moedas
         #time.sleep(0.5)
-        print(f"Você recebeu {player['Moedas']} moedas.")
+        print(f"Você recebeu {Moedas} moedas.")
+        print(f"Você tem {player["Moedas"]} Moedas.")
         andar(difi, player)
     elif itens == 'Poção de cura':
         hp = 30
         if player["Hp"] + hp <= 300:
             player["Hp"] += hp
             time.sleep(0.5)
-        print(f"\nSeu Hp: {player['Hp']}")
+        print(f"\nSeu Hp atual: {player['Hp']}")
     elif itens == 'Poção de exp':
         xp=30
         player["Exp"] += xp
-        print(f"\nSeu Exp: {player['Exp']}")
+        print(f"\nSeu Exp atual: {player['Exp']}")
         if player['Exp'] == 100:
             player['Exp'] = 0           
             player['Level'] += 1
+            print("Parabéns! Você subiu de nível!!")
 
         
 
