@@ -240,19 +240,18 @@ def Morte_vitoria(y,x):
 
 
 def selecionar_monstro(difi, player):
-    choices = {1: 11, 2: 23, 3: 35, 4: 47}
+    choices = {1: len(list_Monstro), 2: len(list_Monstro), 3: len(list_Monstro), 4: len(list_Monstro)}
     max_choice = choices[difi]
     time.sleep(0.5)
     print('Apareceu um monstro nas sombras...')
     time.sleep(0.5)
-    monstro_choice = int(input(f"Escolha um número de 0 a {max_choice} e o monstro será revelado: "))
+    monstro_choice = int(input(f"Escolha um número de 0 a {max_choice -1} e o monstro será revelado: "))
     lista_choice = [monstro_choice]
     if 0 < monstro_choice <= len(list_Monstro):
         time.sleep(0.5)
         print(f"Monstro a enfrentar: {list_Monstro[monstro_choice]}")
         combate(list_Monstro[monstro_choice], list_player[0])
         list_Monstro.pop(monstro_choice)
-        choices[difi] -=1
         if list_Monstro:
             andar(difi, player)
         else:
@@ -261,7 +260,7 @@ def selecionar_monstro(difi, player):
         #print(list_Monstro.index)
         
     else:
-        print(f"Selecione um número válido entre 0 a {len(list_Monstro) -1}\n")
+        print(f"Selecione um número válido entre 0 a {len(list_Monstro)}\n")
         selecionar_monstro(difi, player)
         
 
@@ -342,9 +341,9 @@ def comerciante(difi, player):
                     for j in range(len(player['Inventário'][i])):
                         if player['Inventário'][i][j] == 'Vazio':
                             player['Inventário'][i][j] = itens[0]
-                            break  # Stop once the first empty slot is filled
+                            break  
                         else:
-                            continue  # Continue if no "Vazio" was found in the current row
+                            continue  
                         break
                 print(f"Seu inventário: {player['Inventário']}")
                 print(f"Moedas restantes: {player['Moedas']}")
@@ -360,9 +359,9 @@ def comerciante(difi, player):
                     for j in range(len(player['Inventário'][i])):
                         if player['Inventário'][i][j] == 'Vazio':
                             player['Inventário'][i][j] = itens[1]
-                            break  # Stop once the first empty slot is filled
+                            break  
                         else:
-                            continue  # Continue if no "Vazio" was found in the current row
+                            continue  
                         break
                 print(f"Seu inventário: {player['Inventário']}")
                 print(f"Moedas restantes: {player['Moedas']}")
@@ -378,9 +377,9 @@ def comerciante(difi, player):
                     for j in range(len(player['Inventário'][i])):
                         if player['Inventário'][i][j] == 'Vazio':
                             player['Inventário'][i][j] = itens[2]
-                            break  # Stop once the first empty slot is filled
+                            break 
                         else:
-                            continue  # Continue if no "Vazio" was found in the current row
+                            continue  
                         break
                 print(f"Seu inventário: {player['Inventário']}")
                 print(f"Moedas restantes: {player['Moedas']}")
