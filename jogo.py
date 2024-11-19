@@ -466,11 +466,15 @@ def em_frente(difi, player):
 
 def abrir_inventario(player):
     #print(player['Inventário'])
-    opcoes = ["Equipar", "Usar", "consumir"]
+    opcoes = ["Equipar", "Usar", "Consumir", "Fechar Inventário"]
     for i in range(len(player['Inventário'])):
         for j in range(len(player['Inventário'][i])):
-            print(f"{i+j+1}ºslot >> {player["Inventário"][i][j]}")
-    """item = int(input("Digite o número do item que você deseja interagir: "))
+            print(f"{i+j+1}º Slot >> {player["Inventário"][i][j]}")
+    """
+    print("Opções: ")
+    for num, x in enumerate(opcoes, 1):
+        print(f"{num}>> {x}")
+    item = int(input("Digite o número do item que você deseja interagir: "))
     if item == 1:"""
    
 
