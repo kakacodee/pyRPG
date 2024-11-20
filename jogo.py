@@ -324,7 +324,6 @@ def comerciante(difi, player):
     print(f"\nSaudações guerreiro!!\nEu sou o comerciante local...")
     time.sleep(0.5)
     print(f"Tenho alguns itens que talvez você goste hehe...\n")
-
     itens = ['poção de cura: 20x Moedas', 'poção de exp: 25x Moedas', 'poção de stamina: 15x Moedas', 'amuleto de vida: 60x Moedas', 'amuleto de ataque: 80x Moedas']
     #print(f"Produtos disponíveis: \n1>>{itens[0]} \n2>>{itens[1]} \n3>>{itens[2]} \n4>>{itens[3]} \n5>>{itens[4]}")
     time.sleep(0.5)
@@ -443,7 +442,7 @@ def direita(difi, player):
         time.sleep(0.5)
         print(res)
         andar(difi, player)
-    sort_right() #continuar essa função
+    #sort_right() #continuar essa função
     
 def esquerda(difi, player):
     sort_left = random.choice([lambda: selecionar_monstro(difi, player), lambda: 'Não há nada por aqui... \nProssiga!!', lambda: bau_tesouro(player,difi), lambda: comerciante(difi, player)])
@@ -452,7 +451,7 @@ def esquerda(difi, player):
         time.sleep(0.5)
         print(res)
         andar(difi, player)
-    sort_left()
+    #sort_left()
      #continuar essa função
 
 def em_frente(difi, player):
@@ -462,26 +461,80 @@ def em_frente(difi, player):
         time.sleep(0.5)
         print(res)
         andar(difi, player)
-    sort_front() #continuar essa função
+    #sort_front() #continuar essa função
 
-def abrir_inventario(player):
+def abrir_inventario(player, difi):
+    
     #print(player['Inventário'])
+    itens = ['poção de cura: 20x Moedas', 'poção de exp: 25x Moedas', 'poção de stamina: 15x Moedas', 'amuleto de vida: 60x Moedas', 'amuleto de ataque: 80x Moedas']
     opcoes = ["Equipar", "Usar", "Consumir", "Fechar Inventário"]
     for i in range(len(player['Inventário'])):
         for j in range(len(player['Inventário'][i])):
             print(f"{i+j+1}º Slot >> {player["Inventário"][i][j]}")
+    usar = str(input("Deseja interagir com algum item?\n [S]Sim [N]Não \n"))
+   
+    if usar in ('s', 'S', 'sim', 'Sim'):
+        item = int(input("Digite o número do item que você deseja interagir: "))
+        if 1 <= item < len(player["Inventário"][0]):
+            itemS = player["Inventário"][0][item -1]
+            if itemS in itens:
+                if itemS == itens[0]:
+                    hp = 40
+                    if player['Hp'] + hp <= player['HpMax']:
+                        player['Hp'] += hp
+                    print(f"Hp atual: {player['Hp']}/{player['HpMax']}")
+                    
+                    andar(difi, player)
+                if itemS == itens[1]:
+                    exp = 40
+                    if player['Exp'] + exp <= player['ExpMax']:
+                        player['Exp'] += exp
+                    print(f"Exp atual: {player['Exp']}/{player['ExpMax']}")
+                    
+                    andar(difi, player)
+                if player["Inventário"][0][item] == itens[2]:
+                    stamina = 40
+                    if player['Stamina'] + stamina <= player['StaminaMax']:
+                        player['Stamina'] += stamina
+                    print(f"Stamina atual: {player['Stamina']}/{player['StaminaMax']}")
+                
+                    andar(difi, player)
+                if itemS == itens[3]:
+                    hpmax = 40
+                    hp = 20
+                    player["HpMax"] += hpmax
+                    if player["Hp"] + hp <= player["HpMax"]:
+                        player["Hp"] += hp
+                    print(f"Hp atual: {player['Hp']}/{player['HpMax']}")
+                    
+                    andar(difi, player)
+                elif itemS == itens[4]:
+                    dano = 40
+                    player["Danobase"] += dano
+                    player["Danomedio"] += dano
+                    player["Danoespecial"] += dano
+                    print(f"Dano Base: {player["Danobase"]} \nDano Médio: {player["Danomedio"]} \nDano Especial: {player["Danoespecial"]}")
+                
+                    andar(difi, player)
+                player["Inventário"][0][itemS] = 'Vazio'
+            else:
+                    print("Não há nenhum item utilizável...")
+                    andar(difi, player)
+        else:
+            print("Opção inválida...")
+            abrir_inventario(player, difi)
+    elif usar in ('n', 'N', 'Não', 'nao', 'não', 'Nao'):
+        andar(difi, player)
+
     """
     print("Opções: ")
     for num, x in enumerate(opcoes, 1):
         print(f"{num}>> {x}")
-    item = int(input("Digite o número do item que você deseja interagir: "))
-    if item == 1:"""
+    
    
 
 """
-   else:
-        print(player['Inventário'])
-        Usar = str(input("Deseja usar/equipar algum item? \n[S]sim \n[N]não: "))"""
+
 #Continuar daqui
 
 
@@ -502,7 +555,7 @@ def andar(difi, player): #continuar essa função
         em_frente(difi, player)
         andar(difi, player)
     elif op == 4:
-        abrir_inventario(player)
+        abrir_inventario(player, difi)
         andar(difi,player)
     else:
         time.sleep(0.5)
