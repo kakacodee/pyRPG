@@ -245,7 +245,7 @@ def selecionar_monstro(difi, player):
     time.sleep(0.5)
     print('Apareceu um monstro nas sombras...')
     time.sleep(0.5)
-    monstro_choice = int(input(f"Escolha um número de 0 a {max_choice -1} e o monstro será revelado: "))
+    monstro_choice = int(input(f"Escolha um número de 1 a {max_choice -1} e o monstro será revelado: "))
     lista_choice = [monstro_choice]
     if 0 < monstro_choice <= len(list_Monstro):
         time.sleep(0.5)
@@ -300,13 +300,13 @@ def bau_tesouro(player, difi): #continuar essa função
         print(f"Você recebeu {Moedas} moedas.")
         print(f"Você tem {player["Moedas"]} Moedas.")
         andar(difi, player)
-    elif itens == 'Poção de cura':
+    if itens == 'Poção de cura':
         hp = 30
         if player["Hp"] + hp <= 300:
             player["Hp"] += hp
             time.sleep(0.5)
         print(f"\nSeu Hp atual: {player['Hp']}")
-    elif itens == 'Poção de exp':
+    if itens == 'Poção de exp':
         xp=30
         player["Exp"] += xp
         print(f"\nSeu Exp atual: {player['Exp']}")
@@ -516,7 +516,7 @@ def abrir_inventario(player, difi):
                     print(f"Dano Base: {player["Danobase"]} \nDano Médio: {player["Danomedio"]} \nDano Especial: {player["Danoespecial"]}")
                 
                     andar(difi, player)
-                player["Inventário"][0][itemS] = 'Vazio'
+                itemS = 'Vazio'
             else:
                     print("Não há nenhum item utilizável...")
                     andar(difi, player)
