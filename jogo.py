@@ -483,21 +483,21 @@ def abrir_inventario(player, difi):
                     if player['Hp'] + hp <= player['HpMax']:
                         player['Hp'] += hp
                     print(f"Hp atual: {player['Hp']}/{player['HpMax']}")
-                    
+                    itemS = 'Vazio'
                     andar(difi, player)
                 if itemS == itens[1]:
                     exp = 40
                     if player['Exp'] + exp <= player['ExpMax']:
                         player['Exp'] += exp
                     print(f"Exp atual: {player['Exp']}/{player['ExpMax']}")
-                    
+                    itemS = 'Vazio'
                     andar(difi, player)
-                if player["Inventário"][0][item] == itens[2]:
+                if itemS == itens[2]:
                     stamina = 40
                     if player['Stamina'] + stamina <= player['StaminaMax']:
                         player['Stamina'] += stamina
                     print(f"Stamina atual: {player['Stamina']}/{player['StaminaMax']}")
-                
+                    itemS = 'Vazio'
                     andar(difi, player)
                 if itemS == itens[3]:
                     hpmax = 40
@@ -506,17 +506,17 @@ def abrir_inventario(player, difi):
                     if player["Hp"] + hp <= player["HpMax"]:
                         player["Hp"] += hp
                     print(f"Hp atual: {player['Hp']}/{player['HpMax']}")
-                    
+                    itemS = 'Vazio'
                     andar(difi, player)
-                elif itemS == itens[4]:
+                if itemS == itens[4]:
                     dano = 40
                     player["Danobase"] += dano
                     player["Danomedio"] += dano
                     player["Danoespecial"] += dano
                     print(f"Dano Base: {player["Danobase"]} \nDano Médio: {player["Danomedio"]} \nDano Especial: {player["Danoespecial"]}")
-                
+                    itemS = 'Vazio'
                     andar(difi, player)
-                itemS = 'Vazio'
+                
             else:
                     print("Não há nenhum item utilizável...")
                     andar(difi, player)
