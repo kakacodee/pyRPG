@@ -120,7 +120,6 @@ def criar_Player():
         }"""
     list_player.append(Player)
     print(f"\nStatus do player: {list_player[0]}")
-    time.sleep(0.5)
     
    
 
@@ -128,8 +127,8 @@ def criar_Player():
 
 list_Monstro = []
 def Gerar_Monstros():
-    levelM = randint(1, 100)
-    nomeM = random.choice(['Goblin', 'Orc', 'Serpente', 'Duende'])
+    levelM = randint(10, 100)
+    nomeM = random.choice(['Goblin', 'Orc', 'Serpente', 'Duende', 'Golem', 'Lobo'])
     Monstro={
         "Nome": f"{nomeM} {levelM}",
         "Level": levelM,
@@ -144,7 +143,6 @@ def Gerar_Monstros():
 def gerar_M(nummonstro):
     for z in range(nummonstro):
         Gerar_Monstros()
-        time.sleep(0.1)
 
 
 def somar_stamina(x):
@@ -199,11 +197,11 @@ def atacar_player(y, x):
 def combate(y,x):
     while y['Hp'] > 0 and x['Hp'] > 0:
         atacar_player(y,x)
-        time.sleep(0.5)
+        time.sleep(0.2)
         print(f"Status do Player: Hp: {x['Hp']}/{x['HpMax']}, Stamina: {x['Stamina']}/{x['StaminaMax']} | Status do Monstro: Hp: {y['Hp']}")
         print(f"\n")
         atacar_npc(y,x)
-        time.sleep(0.5)
+        time.sleep(0.2)
         print(f"Status do Player: Hp: {x['Hp']}/{x['HpMax']}, | Status do Monstro: Hp: {y['Hp']}")
         print(f"\n")
         Morte_vitoria(y,x)
@@ -262,6 +260,7 @@ def selecionar_monstro(difi, player):
     else:
         print(f"Selecione um número válido entre 0 a {len(list_Monstro)}\n")
         selecionar_monstro(difi, player)
+    
         
 
 
