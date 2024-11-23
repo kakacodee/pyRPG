@@ -305,13 +305,15 @@ def bau_tesouro(player, difi): #continuar essa função
         if player["Hp"] + hp <= 300:
             player["Hp"] += hp
             time.sleep(0.5)
+        print("Você encontrou uma poção de cura")
         print(f"\nSeu Hp atual: {player['Hp']}")
     if itens == 'Poção de exp':
         xp=30
         player["Exp"] += xp
+        print("Você encontrou uma poção de exp")
         print(f"\nSeu Exp atual: {player['Exp']}")
-        if player['Exp'] == 100:
-            player['Exp'] = 0           
+        if player['Exp'] >= 100:
+            player['Exp'] -= 100           
             player['Level'] += 1
             print("Parabéns! Você subiu de nível!!")
 
@@ -543,30 +545,31 @@ def andar(difi, player): #continuar essa função
     for num, step in enumerate(opcoes, 1):
         time.sleep(0.5)
         print(f"\n{num}>> {step}")
-        time.sleep(0.5)
+        time.sleep(0.5) 
     op = int(input('\nDigite o número da opção escolhida: '))
     if op == 1:
         direita(difi, player)
         andar(difi, player)
-    elif op == 2:
+    if op == 2:
         esquerda(difi, player)
         andar(difi, player)
-    elif op == 3:
+    if op == 3:
         em_frente(difi, player)
         andar(difi, player)
-    elif op == 4:
+    if op == 4:
         abrir_inventario(player, difi)
         andar(difi,player)
     else:
         time.sleep(0.5)
         print('Escolha uma opção válida')
         andar(difi, player)
+    
 
         
 def jogo():
     pyg.mixer.init()
     pyg.mixer.music.load("medieval.mp3")
-    pyg.mixer.music.set_volume(0.25)
+    pyg.mixer.music.set_volume(0.22)
     pyg.mixer.music.play()
     criar_Player()
     player = list_player[0]
