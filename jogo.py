@@ -227,15 +227,11 @@ def combate(y,x):
         time.sleep(0.2)
         print(f"Status do Player: Hp: {x['Hp']}/{x['HpMax']}, Stamina: {x['Stamina']}/{x['StaminaMax']} | Status do Monstro: Hp: {y['Hp']}")
         print(f"\n")
-        esq_yes = esquiva(x,y)
-        if not esq_yes:
-            print(f"+++ {y["Nome"]} +++")
-            atacar_player(y,x)
-            time.sleep(0.2)
-            print(f"Status do Player: Hp: {x['Hp']}/{x['HpMax']}, | Status do Monstro: Hp: {y['Hp']}")
-            print(f"\n")
-        else:
-            atacar_npc(y,x)
+        print(f"+++ {y["Nome"]} +++")
+        atacar_player(y,x)
+        time.sleep(0.2)
+        print(f"Status do Player: Hp: {x['Hp']}/{x['HpMax']}, | Status do Monstro: Hp: {y['Hp']}")
+        print(f"\n")
         Morte_vitoria(y,x)
 
 def Reiniciar():
