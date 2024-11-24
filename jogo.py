@@ -20,7 +20,7 @@ def criar_Player():
         Player ={
         "Nome": name,
         "Level": level,
-        "ExpMax": level * 100,
+        "ExpMax": 100,
         "Exp": 0,
         "Danobase": 30 * level,
         "Danomedio": 40 * level,
@@ -143,6 +143,17 @@ def Gerar_Monstros():
 def gerar_M(nummonstro):
     for z in range(nummonstro):
         Gerar_Monstros()
+list_boss=[]
+def gerar_boss():
+    Dano = randint(30, 40)
+    Boss = {
+        "Nome": "Vezker",
+        "Level": "???",
+        "Dano": Dano * 4,
+        "Hp": 600
+    }
+    list_boss.append(Boss)
+    combate(list_boss[0], list_player[0])
 
 
 def somar_stamina(x):
@@ -254,9 +265,11 @@ def selecionar_monstro(difi, player):
             andar(difi, player)
         else:
             print('Você derrotou todos os monstros!!!!!! LEGENDÁRIO')
+            print('Prepare-se para enfrentar o Rei dos monstros... \nO implacável, VEZKER!!!')
+            gerar_boss()
             escolher_dificuldade()
         #print(list_Monstro.index)
-        
+    
     else:
         print(f"Selecione um número válido entre 0 a {len(list_Monstro)}\n")
         selecionar_monstro(difi, player)
