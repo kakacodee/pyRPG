@@ -212,6 +212,8 @@ def esquiva(x, y):
         if esq == 1:
             print("Esquiva bem sucedida!!!")
             x["Stamina"] -= 30
+            not atacar_npc(y,x)
+            print(f"O ataque do {y["Nome"]} foi em vão!!")
             return True
         else:
             print('Sua esquiva falhou...')
