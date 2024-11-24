@@ -610,10 +610,13 @@ def andar(difi, player): #continuar essa função
 
         
 def jogo():
-    pyg.mixer.init()
-    pyg.mixer.music.load("medieval.mp3")
-    pyg.mixer.music.set_volume(0.22)
-    pyg.mixer.music.play()
+    try:
+        pyg.mixer.init()
+        pyg.mixer.music.load("medieval.mp3")
+        pyg.mixer.music.set_volume(0.22)
+        pyg.mixer.music.play()
+    except:
+        print("Arquivo da música não encontrado")
     criar_Player()
     player = list_player[0]
     dific = escolher_dificuldade()
