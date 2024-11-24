@@ -212,8 +212,8 @@ def esquiva(x, y):
         if esq == 1:
             print("Esquiva bem sucedida!!!")
             x["Stamina"] -= 30
-            not atacar_npc(y,x)
             print(f"O ataque do {y["Nome"]} foi em vão!!")
+            not atacar_npc(y,x)
             return True
         else:
             print('Sua esquiva falhou...')
@@ -225,16 +225,20 @@ def esquiva(x, y):
 def combate(y,x):
     while y['Hp'] > 0 and x['Hp'] > 0:
         print(f"=== {x["Nome"]} ===")
-        atacar_npc(y,x)
+
+        if atacar_npc(y,x):
+            break
         time.sleep(0.2)
         print(f"Status do Player: Hp: {x['Hp']}/{x['HpMax']}, Stamina: {x['Stamina']}/{x['StaminaMax']} | Status do Monstro: Hp: {y['Hp']}")
         print(f"\n")
         print(f"+++ {y["Nome"]} +++")
-        atacar_player(y,x)
+        if atacar_player(y,x):
+            break
         time.sleep(0.2)
         print(f"Status do Player: Hp: {x['Hp']}/{x['HpMax']}, | Status do Monstro: Hp: {y['Hp']}")
         print(f"\n")
         Morte_vitoria(y,x)
+
 
 def Reiniciar():
     time.sleep(0.5)
