@@ -166,9 +166,9 @@ def zerar_stamina(y,x):
             x['Stamina'] +=50
 
 def atacar_npc(y, x):
-    atac=[x['Danobase'] , x['Danomedio'], x['Danoespecial']]
+    atac=[x['Danobase'] , x['Danomedio'], x['Danoespecial'] ]
     print('Lista de ataques: ')
-    print(f"1 >> Golpe básico: {x['Danobase']} \n2 >> Golpe médio: {x['Danomedio']} \n3 >> Golpe especial: {x['Danoespecial']}")
+    print(f"1 >> Golpe básico: {x['Danobase']} \n2 >> Golpe médio: {x['Danomedio']} \n3 >> Golpe especial: {x['Danoespecial']} \n4 >> Esquiva")
     atac_sort = int(input('Digite o número do ataque escolhido: '))
     if atac_sort == 1:
         time.sleep(0.5)
@@ -188,7 +188,9 @@ def atacar_npc(y, x):
         print(f"Você usou o ataque Especial: {atac[2]}")
         x['Stamina'] -= 20
         zerar_stamina(y,x)
-    elif  0<atac_sort>3:
+    if atac_sort == 4:
+        esquiva(x,y)
+    elif  0<atac_sort>4:
         time.sleep(0.5)
         print('Escolha um ataque válido')
         atacar_npc(y, x)
@@ -204,17 +206,36 @@ def atacar_player(y, x):
         Reiniciar()
         return True
     return False
+def esquiva(x, y):
+    if x["Stamina"] >= 30:
+        esq = randint(1,2)
+        if esq == 1:
+            print("Esquiva bem sucedida!!!")
+            x["Stamina"] -= 30
+            return True
+        else:
+            print('Sua esquiva falhou...')
+            return False
+    else:
+        print("Stamina insuficiente...")
+        return False
 
 def combate(y,x):
     while y['Hp'] > 0 and x['Hp'] > 0:
-        atacar_player(y,x)
+        print(f"=== {x["Nome"]} ===")
+        atacar_npc(y,x)
         time.sleep(0.2)
         print(f"Status do Player: Hp: {x['Hp']}/{x['HpMax']}, Stamina: {x['Stamina']}/{x['StaminaMax']} | Status do Monstro: Hp: {y['Hp']}")
         print(f"\n")
-        atacar_npc(y,x)
-        time.sleep(0.2)
-        print(f"Status do Player: Hp: {x['Hp']}/{x['HpMax']}, | Status do Monstro: Hp: {y['Hp']}")
-        print(f"\n")
+        esq_yes = esquiva(x,y)
+        if not esq_yes:
+            print(f"+++ {y["Nome"]} +++")
+            atacar_player(y,x)
+            time.sleep(0.2)
+            print(f"Status do Player: Hp: {x['Hp']}/{x['HpMax']}, | Status do Monstro: Hp: {y['Hp']}")
+            print(f"\n")
+        else:
+            atacar_npc(y,x)
         Morte_vitoria(y,x)
 
 def Reiniciar():
