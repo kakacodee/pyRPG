@@ -560,7 +560,7 @@ def abrir_inventario(player, difi):
 
 
 def andar(difi, player): #continuar essa função
-    opcoes = ['Ir para DIREITA', 'Ir para ESQUERDA', 'Ir em FRENTE', 'Abrir INVENTÁRIO']
+    opcoes = ['Ir para DIREITA', 'Ir para ESQUERDA', 'Ir em FRENTE', 'Abrir INVENTÁRIO', 'Status do PLAYER']
     for num, step in enumerate(opcoes, 1):
         time.sleep(0.5)
         print(f"\n{num}>> {step}")
@@ -577,6 +577,9 @@ def andar(difi, player): #continuar essa função
         andar(difi, player)
     if op == 4:
         abrir_inventario(player, difi)
+        andar(difi,player)
+    if op == 5:
+        print(list_player[0])
         andar(difi,player)
     else:
         time.sleep(0.5)
