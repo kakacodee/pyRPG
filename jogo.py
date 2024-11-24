@@ -223,6 +223,7 @@ def Reiniciar():
     if reiniciar in ('S', 's'):
         list_player.clear()
         list_Monstro.clear()
+        list_boss.clear()
         jogo()
     else:
         time.sleep(0.5)
@@ -301,7 +302,7 @@ for y in list_Monstro:
         print(f"Nome: {y['Nome']} | Level: {y['Level']} | Dano: {y['Dano']} | Hp {y['Hp']}")
    """     
 def bau_tesouro(player, difi): #continuar essa função
-    itens = random.choice(['Moedas', 'Poção de cura', 'Poção de exp'])
+    itens = random.choice(['Moedas', 'Poção de cura', 'Poção de exp', 'Monstro bau'])
     time.sleep(0.5)
     print('\nVocê encontrou um baú!!!')
     
@@ -328,6 +329,10 @@ def bau_tesouro(player, difi): #continuar essa função
             player['Exp'] -= 100           
             player['Level'] += 1
             print("Parabéns! Você subiu de nível!!")
+    if itens == 'Monstro bau':
+        print("Tem algo estranho nesse baú...")
+        selecionar_monstro(difi, player)
+
 
         
 
