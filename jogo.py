@@ -195,7 +195,7 @@ def atacar_npc(y, x):
         print('Escolha um ataque válido')
         atacar_npc(y, x)
     if y['Hp'] <= 0:
-        print("Você venceu!!!")
+        
         return True
     return False
 def atacar_player(y, x):
@@ -237,7 +237,7 @@ def combate(y,x):
         time.sleep(0.2)
         print(f"Status do Player: Hp: {x['Hp']}/{x['HpMax']}, | Status do Monstro: Hp: {y['Hp']}")
         print(f"\n")
-        Morte_vitoria(y,x)
+    Morte_vitoria(y,x)
 
 
 def Reiniciar():
@@ -287,7 +287,7 @@ def selecionar_monstro(difi, player):
         list_Monstro.pop(monstro_choice)
         if list_Monstro:
             andar(difi, player)
-        else:
+        elif list_Monstro is None:
             print('Você derrotou todos os monstros!!!!!! LEGENDÁRIO')
             print('Prepare-se para enfrentar o Rei dos monstros... \nO implacável, VEZKER!!!')
             gerar_boss()
