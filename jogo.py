@@ -292,7 +292,8 @@ def selecionar_monstro(difi, player):
         list_Monstro.pop(monstro_choice)
         if list_Monstro:
             andar(difi, player)
-        elif list_Monstro is None:
+        
+        elif max_choice <=1:
             print('Você derrotou todos os monstros!!!!!! LEGENDÁRIO')
             print('Prepare-se para enfrentar o Rei dos monstros... \nO implacável, VEZKER!!!')
             gerar_boss()
