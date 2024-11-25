@@ -223,21 +223,26 @@ def esquiva(x, y):
         return False
 
 def combate(y,x):
-    while y['Hp'] > 0 and x['Hp'] > 0:
+    while y['Hp'] > 0 or x['Hp'] > 0:
         print(f"=== {x["Nome"]} ===")
-
-        if atacar_npc(y,x):
-            break
+        atacar_npc(y,x)
         time.sleep(0.2)
         print(f"Status do Player: Hp: {x['Hp']}/{x['HpMax']}, Stamina: {x['Stamina']}/{x['StaminaMax']} | Status do Monstro: Hp: {y['Hp']}")
-        print(f"\n")
-        print(f"+++ {y["Nome"]} +++")
-        if atacar_player(y,x):
+        if y['Hp'] <= 0:
+            Morte_vitoria(y,x)
             break
-        time.sleep(0.2)
-        print(f"Status do Player: Hp: {x['Hp']}/{x['HpMax']}, | Status do Monstro: Hp: {y['Hp']}")
-        print(f"\n")
-    Morte_vitoria(y,x)
+        else:
+            print(f"\n")
+            print(f"+++ {y["Nome"]} +++")
+            atacar_player(y,x)
+            time.sleep(0.2)
+            print(f"Status do Player: Hp: {x['Hp']}/{x['HpMax']}, | Status do Monstro: Hp: {y['Hp']}")
+            print(f"\n")
+        if x['Hp'] <= 0:
+            Morte_vitoria(y,x)
+            break
+        else:
+            continue
 
 
 def Reiniciar():
