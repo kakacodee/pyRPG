@@ -486,6 +486,7 @@ def localizacao_player():
     l = '*' *10
     for i in range(-1, len(l)):
         print(l)
+        
     #continuar
 def direita(difi, player):
     sort_right = random.choice([lambda: selecionar_monstro(difi, player), lambda:'Não há nada por aqui... \nProssiga!!', lambda: bau_tesouro(player, difi), lambda: comerciante(difi, player)])
