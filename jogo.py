@@ -290,10 +290,10 @@ def selecionar_monstro(difi, player):
         print(f"Monstro a enfrentar: {list_Monstro[monstro_choice]}")
         combate(list_Monstro[monstro_choice], list_player[0])
         list_Monstro.pop(monstro_choice)
-        if list_Monstro:
+        if len(list_Monstro) >=1:
             andar(difi, player)
         
-        elif max_choice <=1:
+        elif len(list_Monstro) <1:
             print('Você derrotou todos os monstros!!!!!! LEGENDÁRIO')
             print('Prepare-se para enfrentar o Rei dos monstros... \nO implacável, VEZKER!!!')
             gerar_boss()
@@ -483,8 +483,12 @@ def comerciante(difi, player):
         andar(difi, player)
 
 
-
-
+def localizacao_player():
+    l = []
+    a = [['+', '-'] * 10 for _ in range(6)]
+    l.append(a)
+    print(l)
+    #continuar
 def direita(difi, player):
     sort_right = random.choice([lambda: selecionar_monstro(difi, player), lambda:'Não há nada por aqui... \nProssiga!!', lambda: bau_tesouro(player, difi), lambda: comerciante(difi, player)])
     res = sort_right()
