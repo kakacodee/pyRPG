@@ -213,7 +213,6 @@ def esquiva(x, y):
             print("Esquiva bem sucedida!!!")
             x["Stamina"] -= 30
             print(f"O ataque do {y["Nome"]} foi em vão!!")
-            not atacar_npc(y,x)
             return True
         else:
             print('Sua esquiva falhou...')
@@ -636,5 +635,6 @@ def jogo():
     andar(dific, player)
     
 jogo()
+
 
 
