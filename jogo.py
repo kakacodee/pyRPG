@@ -482,13 +482,18 @@ def comerciante(difi, player):
         andar(difi, player)
 
 
-def localizacao_player():
-    l = '*' *10
-    for i in range(-1, len(l)):
-        print(l)
+def localizacao_player(difi, player):
+    l = ['*' * 64] * 10
+    p = 'x'
+    for i in range(len(l)):
+        if i == 8 :
+            l[i] = p
+            print("".join(l))
+
         
     #continuar
 def direita(difi, player):
+    localizacao_player(difi, player)
     sort_right = random.choice([lambda: selecionar_monstro(difi, player), lambda:'Não há nada por aqui... \nProssiga!!', lambda: bau_tesouro(player, difi), lambda: comerciante(difi, player)])
     res = sort_right()
     if res == 'Não há nada por aqui... \nProssiga!!':
@@ -498,6 +503,7 @@ def direita(difi, player):
     #sort_right() #continuar essa função
     
 def esquerda(difi, player):
+    localizacao_player(difi, player)
     sort_left = random.choice([lambda: selecionar_monstro(difi, player), lambda: 'Não há nada por aqui... \nProssiga!!', lambda: bau_tesouro(player,difi), lambda: comerciante(difi, player)])
     res = sort_left()
     if res == 'Não há nada por aqui... \nProssiga!!':
@@ -508,6 +514,7 @@ def esquerda(difi, player):
      #continuar essa função
 
 def em_frente(difi, player):
+    localizacao_player(difi, player)
     sort_front = random.choice([lambda: selecionar_monstro(difi, player), lambda:'Não há nada por aqui... \nProssiga!!', lambda: bau_tesouro(player, difi), lambda: comerciante(difi, player)])
     res = sort_front()
     if res == 'Não há nada por aqui... \nProssiga!!':
