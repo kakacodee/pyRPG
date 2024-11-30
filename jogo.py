@@ -587,16 +587,49 @@ def abrir_inventario(player, difi):
 """
 
 #Continuar daqui
-def localizacao_player(num1, num2, pos):
+def localizacao_player(num1, num2, pos, opc):
     print("\n===Localização atual:===\n")
     l = [['*' * 64 for _ in range(20)]]
     p = 'x'
-    for i in range(len(l)):
-        for j in range(len(l[i])):
-            print("".join(l[i][j]))
-            if j == pos:
-                l[i][j] = '*' * num1, p, '*' * num2
-                print("".join(l[i][j])) 
+    num1 = 32
+    num2 = 31
+    pos = 10
+    if opc == 1:
+        for i in range(len(l)):
+            for j in range(len(l[i])):
+                
+                print("".join(l[i][j]))
+                if j == pos:
+                    l[i][j] = '*' * num1, p, '*' * num2
+                    print("".join(l[i][j]))
+    num1 +=1
+    num2 -=1
+    pos = pos
+    if opc == 2:
+        for i in range(len(l)):
+            for j in range(len(l[i])):
+                num1 -=1
+                num2 +=1
+                print("".join(l[i][j]))
+                if j == pos:
+                    l[i][j] = '*' * num1, p, '*' * num2
+                    print("".join(l[i][j]))  
+    num1 -=1
+    num2 +=1
+    pos = pos
+    if opc == 3:
+        for i in range(len(l)):
+            for j in range(len(l[i])):
+                pos -= 1
+                num1
+                num2
+                print("".join(l[i][j]))
+                if j == pos:
+                    l[i][j] = '*' * num1, p, '*' * num2
+                    print("".join(l[i][j]))  
+    pos -=1
+    num1 = num1
+    num2 = num2
 
 def andar(difi, player): #continuar essa função
     opcoes = ['Ir para DIREITA', 'Ir para ESQUERDA', 'Ir em FRENTE', 'Abrir INVENTÁRIO', 'Status do PLAYER']
@@ -606,15 +639,12 @@ def andar(difi, player): #continuar essa função
         time.sleep(0.5) 
     op = int(input('\nDigite o número da opção escolhida: '))
     if op == 1:
-        
         direita(difi, player)
         andar(difi, player)
     if op == 2:
-        
         esquerda(difi, player)
         andar(difi, player)
     if op == 3:
-        
         em_frente(difi, player)
         andar(difi, player)
     if op == 4:
