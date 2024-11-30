@@ -482,18 +482,11 @@ def comerciante(difi, player):
         andar(difi, player)
 
 
-def localizacao_player(difi, player):
-    l = ['*' * 64] * 10
-    p = 'x'
-    for i in range(len(l)):
-        if i == 8 :
-            l[i] = p
-            print("".join(l))
+
 
         
     #continuar
 def direita(difi, player):
-    localizacao_player(difi, player)
     sort_right = random.choice([lambda: selecionar_monstro(difi, player), lambda:'Não há nada por aqui... \nProssiga!!', lambda: bau_tesouro(player, difi), lambda: comerciante(difi, player)])
     res = sort_right()
     if res == 'Não há nada por aqui... \nProssiga!!':
@@ -503,7 +496,6 @@ def direita(difi, player):
     #sort_right() #continuar essa função
     
 def esquerda(difi, player):
-    localizacao_player(difi, player)
     sort_left = random.choice([lambda: selecionar_monstro(difi, player), lambda: 'Não há nada por aqui... \nProssiga!!', lambda: bau_tesouro(player,difi), lambda: comerciante(difi, player)])
     res = sort_left()
     if res == 'Não há nada por aqui... \nProssiga!!':
@@ -514,7 +506,6 @@ def esquerda(difi, player):
      #continuar essa função
 
 def em_frente(difi, player):
-    localizacao_player(difi, player)
     sort_front = random.choice([lambda: selecionar_monstro(difi, player), lambda:'Não há nada por aqui... \nProssiga!!', lambda: bau_tesouro(player, difi), lambda: comerciante(difi, player)])
     res = sort_front()
     if res == 'Não há nada por aqui... \nProssiga!!':
@@ -596,9 +587,21 @@ def abrir_inventario(player, difi):
 """
 
 #Continuar daqui
-
+def localizacao_player(num1, num2, pos):
+    print("\n===Localização atual:===\n")
+    l = [['*' * 64 for _ in range(20)]]
+    p = 'x'
+    for i in range(len(l)):
+        for j in range(len(l[i])):
+            print("".join(l[i][j]))
+            if j == pos:
+                l[i][j] = '*' * num1, p, '*' * num2
+                print("".join(l[i][j])) 
 
 def andar(difi, player): #continuar essa função
+    num1 = 31
+    num2 = 32
+    pos = 10
     opcoes = ['Ir para DIREITA', 'Ir para ESQUERDA', 'Ir em FRENTE', 'Abrir INVENTÁRIO', 'Status do PLAYER']
     for num, step in enumerate(opcoes, 1):
         time.sleep(0.5)
@@ -606,14 +609,27 @@ def andar(difi, player): #continuar essa função
         time.sleep(0.5) 
     op = int(input('\nDigite o número da opção escolhida: '))
     if op == 1:
+        num1 = num1 + 1
+        num2 = num2 - 1
+        localizacao_player(num1, num2, pos)
         direita(difi, player)
         andar(difi, player)
+    num1 =num1+1
+    num2 =num2-1
     if op == 2:
+        num1 = num1 - 1
+        num2 = num2 + 1
+        localizacao_player(num1, num2, pos)
         esquerda(difi, player)
         andar(difi, player)
+    num1 =num1-1
+    num2 =num2+1
     if op == 3:
+        pos = pos - 1
+        localizacao_player(num1, num2, pos)
         em_frente(difi, player)
         andar(difi, player)
+    pos =pos-1
     if op == 4:
         abrir_inventario(player, difi)
         andar(difi,player)
@@ -642,5 +658,3 @@ def jogo():
     andar(dific, player)
     
 jogo()
-
-
