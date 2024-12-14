@@ -1,3 +1,4 @@
+
 import time
 from random import randint
 from random import choice
@@ -292,7 +293,7 @@ def selecionar_monstro(difi, player):
         if len(list_Monstro) >=1:
             andar(difi, player)
         
-        elif len(list_Monstro) <1:
+        elif range(len(list_Monstro)) == 0 | range(len(list_Monstro)) <1:
             print('Você derrotou todos os monstros!!!!!! LEGENDÁRIO')
             print('Prepare-se para enfrentar o Rei dos monstros... \nO implacável, VEZKER!!!')
             gerar_boss()
@@ -363,6 +364,33 @@ def bau_tesouro(player, difi): #continuar essa função
 
 
         
+def monstro_sequencia(difi, player):
+    import random
+import time
+
+
+def monstro_sequencia(difi, player):
+    print("Tem algo estranho vagando pelas sombras...")
+    print("É um worduich! Escreva a sequencia de símbolos e letras que ele te pedir \n e você poderá continuar a sua jornada")
+    comprimento = random.randint(5, 10)
+    
+    sequencia = []
+    for i in range(comprimento):
+        word = random.choice(['a', 'b', 'c', 'd', 'e', 'f', '1', '2', '3', '4', '5', '6'])
+        sequencia.append(word)
+    seq = "".join(sequencia)
+    print(seq)
+    a = 0
+    timer = time.perf_counter()
+    seq_user = input("Digite a sequência requisitada: ")
+    if seq_user == seq:
+        print("Parabéns! Pode continuar a sua jornada")
+        andar(difi, player)
+    else:
+        print("Você perdeu...")
+        Reiniciar()
+    #continuar daqui
+    #após o término colocar na função andar...
 
 def comerciante(difi, player):
     time.sleep(0.5)
@@ -487,7 +515,7 @@ def comerciante(difi, player):
         
     #continuar
 def direita(difi, player):
-    sort_right = random.choice([lambda: selecionar_monstro(difi, player), lambda:'Não há nada por aqui... \nProssiga!!', lambda: bau_tesouro(player, difi), lambda: comerciante(difi, player)])
+    sort_right = random.choice([lambda: monstro_sequencia(difi, player), lambda: selecionar_monstro(difi, player), lambda:'Não há nada por aqui... \nProssiga!!', lambda: bau_tesouro(player, difi), lambda: comerciante(difi, player)])
     res = sort_right()
     if res == 'Não há nada por aqui... \nProssiga!!':
         time.sleep(0.5)
@@ -496,7 +524,7 @@ def direita(difi, player):
     #sort_right() #continuar essa função
     
 def esquerda(difi, player):
-    sort_left = random.choice([lambda: selecionar_monstro(difi, player), lambda: 'Não há nada por aqui... \nProssiga!!', lambda: bau_tesouro(player,difi), lambda: comerciante(difi, player)])
+    sort_left = random.choice([lambda: monstro_sequencia(difi, player), lambda: selecionar_monstro(difi, player), lambda: 'Não há nada por aqui... \nProssiga!!', lambda: bau_tesouro(player,difi), lambda: comerciante(difi, player)])
     res = sort_left()
     if res == 'Não há nada por aqui... \nProssiga!!':
         time.sleep(0.5)
@@ -506,7 +534,7 @@ def esquerda(difi, player):
      #continuar essa função
 
 def em_frente(difi, player):
-    sort_front = random.choice([lambda: selecionar_monstro(difi, player), lambda:'Não há nada por aqui... \nProssiga!!', lambda: bau_tesouro(player, difi), lambda: comerciante(difi, player)])
+    sort_front = random.choice([lambda: monstro_sequencia(difi, player), lambda: selecionar_monstro(difi, player), lambda:'Não há nada por aqui... \nProssiga!!', lambda: bau_tesouro(player, difi), lambda: comerciante(difi, player)])
     res = sort_front()
     if res == 'Não há nada por aqui... \nProssiga!!':
         time.sleep(0.5)
