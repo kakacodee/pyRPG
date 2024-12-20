@@ -266,8 +266,8 @@ def Morte_vitoria(y,x):
         if x['Hp'] + 50 <=300:
             x['Hp'] += 50
         x['Exp'] += 10
-        if x['Exp'] == 100:
-            x['Exp'] = 0           
+        if x['Exp'] >= 100:
+            x['Exp'] -= 100           
             x['Level'] += 1
         somar_stamina(x)
         print(list_player[0])
@@ -558,8 +558,10 @@ def abrir_inventario(player, difi):
                     andar(difi, player)
                 if itemS == itens[1]:
                     exp = 40
-                    if player['Exp'] + exp <= player['ExpMax']:
-                        player['Exp'] += exp
+                    player['Exp'] += exp
+                    if player['Exp'] >= 100:
+                        player['Exp'] -= 100
+                        player['Level'] += 1
                     print(f"Exp atual: {player['Exp']}/{player['ExpMax']}")
                     player["Inventário"][0][item -1] = 'Vazio'
                     andar(difi, player)
