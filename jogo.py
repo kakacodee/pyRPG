@@ -362,13 +362,6 @@ def bau_tesouro(player, difi): #continuar essa função
         print("Tem algo estranho nesse baú...")
         selecionar_monstro(difi, player)
 
-
-        
-def monstro_sequencia(difi, player):
-    import random
-import time
-
-
 def monstro_sequencia(difi, player):
     print("Tem algo estranho vagando pelas sombras...")
     print("É um worduich! Escreva a sequencia de símbolos e letras que ele te pedir \n e você poderá continuar a sua jornada")
@@ -614,49 +607,7 @@ def abrir_inventario(player, difi):
 """
 
 #Continuar daqui
-def localizacao_player(num1, num2, pos, opc):
-    print("\n===Localização atual:===\n")
-    l = [['*' * 64 for _ in range(20)]]
-    p = 'x'
-    num1 = 32
-    num2 = 31
-    pos = 10
-    if opc == 1:
-        for i in range(len(l)):
-            for j in range(len(l[i])):
-                
-                print("".join(l[i][j]))
-                if j == pos:
-                    l[i][j] = '*' * num1, p, '*' * num2
-                    print("".join(l[i][j]))
-    num1 +=1
-    num2 -=1
-    pos = pos
-    if opc == 2:
-        for i in range(len(l)):
-            for j in range(len(l[i])):
-                num1 -=1
-                num2 +=1
-                print("".join(l[i][j]))
-                if j == pos:
-                    l[i][j] = '*' * num1, p, '*' * num2
-                    print("".join(l[i][j]))  
-    num1 -=1
-    num2 +=1
-    pos = pos
-    if opc == 3:
-        for i in range(len(l)):
-            for j in range(len(l[i])):
-                pos -= 1
-                num1
-                num2
-                print("".join(l[i][j]))
-                if j == pos:
-                    l[i][j] = '*' * num1, p, '*' * num2
-                    print("".join(l[i][j]))  
-    pos -=1
-    num1 = num1
-    num2 = num2
+    
 
 def andar(difi, player): #continuar essa função
     opcoes = ['Ir para DIREITA', 'Ir para ESQUERDA', 'Ir em FRENTE', 'Abrir INVENTÁRIO', 'Status do PLAYER']
