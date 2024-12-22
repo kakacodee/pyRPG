@@ -32,7 +32,9 @@ def criar_Player():
         "Hp": 280,
         "Inventário": inventario,
         "Moedas": 0
+        
     }
+        print(f"\nStatus do player: Nome: {Player["Nome"]}\nLevel: {Player["Level"]}\nExp: {Player["Exp"]}/{Player['ExpMax']}\nStamina: {Player["Stamina"]}/{Player["StaminaMax"]}\nHp: {Player["Hp"]}/{Player["HpMax"]}")
     elif select == 2:
         print(f"Você é um CAVALEIRO, {name}")
         Player ={
@@ -50,6 +52,7 @@ def criar_Player():
         "Inventário": inventario,
         "Moedas": 0
     }
+        print(f"\nStatus do player: Nome: {Player["Nome"]}\nLevel: {Player["Level"]}\nExp: {Player["Exp"]}/{Player['ExpMax']}\nStamina: {Player["Stamina"]}/{Player["StaminaMax"]}\nHp: {Player["Hp"]}/{Player["HpMax"]}")
     elif select == 3:
         print(f"Você é um ANÃO, {name}")
         Player ={
@@ -67,6 +70,7 @@ def criar_Player():
         "Inventário": inventario,
         "Moedas": 0
     }
+        print(f"\nStatus do player: Nome: {Player["Nome"]}\nLevel: {Player["Level"]}\nExp: {Player["Exp"]}/{Player['ExpMax']}\nStamina: {Player["Stamina"]}/{Player["StaminaMax"]}\nHp: {Player["Hp"]}/{Player["HpMax"]}")
     elif select == 4:
         print(f"Você é um MAGO, {name}")
         Player ={
@@ -84,6 +88,7 @@ def criar_Player():
         "Inventário": inventario,
         "Moedas": 0
     }
+        print(f"\nStatus do player: \nNome: {Player["Nome"]}\nLevel: {Player["Level"]}\nExp: {Player["Exp"]}/{Player['ExpMax']}\nStamina: {Player["Stamina"]}/{Player["StaminaMax"]}\nHp: {Player["Hp"]}/{Player["HpMax"]}\n")
     elif select == 5:
         print(f"Você é um GLADIADOR, {name}")
         Player ={
@@ -101,6 +106,7 @@ def criar_Player():
         "Inventário": inventario,
         "Moedas": 0
     }
+        print(f"\nStatus do player: Nome: {Player["Nome"]}\nLevel: {Player["Level"]}\nExp: {Player["Exp"]}/{Player['ExpMax']}\nStamina: {Player["Stamina"]}/{Player["StaminaMax"]}\nHp: {Player["Hp"]}/{Player["HpMax"]}")
     if 0 <select >5:
         print("Escolha uma classe válida...")
         criar_Player()
@@ -120,7 +126,7 @@ def criar_Player():
             "Moedas": 0
         }"""
     list_player.append(Player)
-    print(f"\nStatus do player: {list_player[0]}")
+    
     
    
 
@@ -141,9 +147,6 @@ def Gerar_Monstros():
     for y in list_Monstro:
         print(f"Nome: {y['Nome']} | Level: {y['Level']} | Dano: {y['Dano']} | Hp {y['Hp']}")
     """
-def gerar_M(nummonstro):
-    for z in range(nummonstro):
-        Gerar_Monstros()
 list_boss=[]
 def gerar_boss():
     Dano = randint(30, 40)
@@ -156,6 +159,10 @@ def gerar_boss():
     list_boss.append(Boss)
     combate(list_boss[0], list_player[0])
 
+
+def gerar_M(nummonstro):
+    for z in range(nummonstro):
+        Gerar_Monstros()
 
 def somar_stamina(x):
     if x['Stamina']+50 <= 120:
@@ -293,7 +300,7 @@ def selecionar_monstro(difi, player):
         if len(list_Monstro) >=1:
             andar(difi, player)
         
-        elif range(len(list_Monstro)) == 0 | range(len(list_Monstro)) <1:
+        if len(list_Monstro) == 0:
             print('Você derrotou todos os monstros!!!!!! LEGENDÁRIO')
             print('Prepare-se para enfrentar o Rei dos monstros... \nO implacável, VEZKER!!!')
             gerar_boss()
@@ -318,7 +325,7 @@ def escolher_dificuldade():
     if 1<=difi<=4:
         gerar_M(12*difi)
         return difi
-    else:
+    elif 1 > difi > 4 | difi != int:
         time.sleep(0.5)
         print("Selecione uma dificuldade válida...")
         return escolher_dificuldade()   
@@ -633,7 +640,7 @@ def andar(difi, player): #continuar essa função
     if op == 5:
         print(list_player[0])
         andar(difi,player)
-    else:
+    elif 1 > op > 5 | op != int:
         time.sleep(0.5)
         print('Escolha uma opção válida')
         andar(difi, player)
